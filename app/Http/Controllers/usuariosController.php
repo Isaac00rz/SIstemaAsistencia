@@ -205,6 +205,34 @@ class usuariosController extends Controller
         }
     }
 
+    public function editarUsuarioP(Request $request){
+        if(Auth::check()){
+            $array_alumnos = $request->input('alumnos');
+            $idP = $request->input('id');
+            $id = Auth::id();
+            $contador = 0;
+            $registros = count($array_alumnos);
+
+            $consulta = DB::table('hijos')
+            ->Where('id','=',$idP)
+            ->delete();
+
+
+            foreach($array_alumnos as $i=>$t) {
+                $consulta2 = DB::table('hijos')
+                ->insert(['id'=>$idP,'id_Alumno'=> $array_alumnos[$i]]);
+                $contador++;
+            }
+            if($registros==$contador){
+                return redirect('Admin/Usuario/Padre/ModBaja')->with('message', 'Datos Insertados');
+            }
+                
+
+        }else{
+            return redirect('/login');
+        }
+    }
+
     public function eliminarA($id_usuario){
         if(Auth::check()){
             $consulta = DB::table('roles')

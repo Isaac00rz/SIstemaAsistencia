@@ -7,7 +7,7 @@
         @if(session()->has('message')) 
             {{ session()->get('message') }} 
         @endif 
-        <form role="form" name="form" method="post" action="{{ url('/Altas/Usuario/altaUsuarioHijo') }}">
+        <form role="form" name="form" method="post" action="{{ url('/Modificar/Usuario/editarUsuarioP') }}">
             {!! csrf_field() !!}
                     <table border="1" id="tab" style="display:inline-block;">
                         <tr id="cabecera">
@@ -26,13 +26,13 @@
                                     
                                 @endforeach
                             </select></td>
-                            <td class="tds"><input class="inputs" type="reset" class="noEliminar" value="Eliminar" /></td>
+                            <td class="tds"><input type="button" class="borrar" value="Eliminar" style="min-width: 100%; width:100%;"/></td>
                         </tr>
                         @endforeach
                         <input type="hidden" name="id" value="{{$id}}">
                     </table>
                     <button id="add" type="button" onClick="agregar();" ><b>Añadir registro</b></button>
-                    <button id="aceptar" name="aceptar" type="submit"><b>Insertar registros</b></button>
+                    <button id="aceptar" name="aceptar" type="submit"><b>Actualizar registros</b></button>
                 </form>
             </fieldset>
 </div>

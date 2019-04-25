@@ -41,4 +41,5 @@ Route::get('/Admin/Usuario/Padre/ModBaja','usuariosController@busquedaP');
 Route::get('/Admin/Usuario/Administracion/Editar/{id_usuario}','usuariosController@editarA');
 Route::get('/Admin/Usuario/Padre/Editar/{id_usuario}','usuariosController@editarP');
 Route::post('/Modificar/Usuario/editarUsuarioA','usuariosController@editarUsuarioA');
+Route::post('/Modificar/Usuario/editarUsuarioP','usuariosController@editarUsuarioP');
 Route::get('/Admin/Usuario/Administracion/Eliminar/{id_alumno}','usuariosController@eliminarA');
