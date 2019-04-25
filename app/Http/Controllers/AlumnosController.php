@@ -32,6 +32,7 @@ class AlumnosController extends Controller
             $array_Nombre = $request->input('nombre');
             $array_ApellidoP = $request->input('apellidoP');
             $array_ApellidoM = $request->input('apellidoM');
+            $array_semestre= $request->input('semestre');
             $id = Auth::id();
             $contador = 0;
             $registros = count($array_NoControl);
@@ -40,7 +41,7 @@ class AlumnosController extends Controller
                 $consulta = DB::table('alumnos')
                 ->insert(['id_alumno'=>$array_NoControl[$i],'nombre'=> $array_Nombre[$i],
                 'apellidoP'=>$array_ApellidoP[$i],'apellidoM' => $array_ApellidoM[$i],
-                'id'=>$id]);
+                'semestre'=>$array_semestre[$i],'id'=>$id]);
                 $contador++;
             }
             if($registros==$contador){

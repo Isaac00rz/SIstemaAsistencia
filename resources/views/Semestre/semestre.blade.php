@@ -7,8 +7,10 @@
     <a href="">Alta</a>
     <br>
     <hr>
-    <p>Informacion Semestre Actual</p>
-    <a href="">Actual</a>
+    <p>Semestre Actual</p>
+    <a href="">Baja Alumnos</a>
+    <a href="">Agregar Alumnos</a>
+    <a href="">Información</a>
     <br>
     <hr>
     <p>Finalizar Semestre</p>

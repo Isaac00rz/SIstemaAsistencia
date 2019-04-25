@@ -15,6 +15,7 @@
                             <td class="tds">Nombre</td>
                             <td class="tds">Apellido Paterno</td>
                             <td class="tds">Apellido Materno</td>
+                            <td class="tds">No. Semestre</td>
                             <td class="tds">Eliminar</td>
                         </tr>
                         <tr>
@@ -22,6 +23,7 @@
                             <td class="tds"><input class="inputs" type="text" name="nombre[]" maxlength = "20" placeholder="Nombre" required></td>
                             <td class="tds"><input class="inputs" type="text" name="apellidoP[]" maxlength="30" placeholder="Nombre Paterno" required></td>
                             <td class="tds"><input class="inputs" type="text" name="apellidoM[]" maxlength="25" placeholder="Nombre Materno" required></td>
+                            <td class="tds"><input class="inputs" type="number" name="semestre[]" maxlength="2" placeholder="No de Semestre" required></td>
                             <td class="tds"><input class="inputs" type="reset" class="noEliminar" value="Eliminar" /></td>
                         </tr>
             
