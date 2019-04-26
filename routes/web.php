@@ -49,3 +49,5 @@ Route::post('/Altas/Semestre/altaSemestre','SemestreController@store');
 Route::get('/Admin/Semestre/Baja','SemestreController@finalizar');
 Route::get('/Admin/Semestre/Alta/Alumno','SemestreController@formularioA');
 Route::post('/Altas/Semestre/Alumno/altaAlumno','SemestreController@storeAlumno');
+Route::get('/Admin/Semestre/Baja/Alumno','SemestreController@formularioB');
+Route::get('/Admin/Semestre/Alumnos/Eliminar/{id_semestre}/{id_alumno}','SemestreController@eliminarA');

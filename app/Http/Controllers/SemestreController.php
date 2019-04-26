@@ -70,6 +70,41 @@ class SemestreController extends Controller
         }
     }
 
+    public function formularioB(){
+        if(Auth::check()){
+            $consulta = DB::table('semestre')
+                ->select('id_semestre')
+                ->where('actual','=',true)
+                ->get();
+            if((count($consulta)>0)){
+                $alumnos[] = 0;
+                foreach($consulta as $semestre){
+                    $id_semestre = $semestre->id_semestre;
+                }
+                $consulta2 = DB::table('alumnossemestre')
+                ->select('id_alumno')
+                ->where('id_semestre','=',$id_semestre)
+                ->get();
+                foreach($consulta2 as $alumno){
+                    $alumnos[] = $alumno->id_alumno;
+                }
+                $consulta3 = DB::table('alumnos')
+                ->select(DB::raw("id_alumno, nombre,apellidoP,apellidoM")) 
+                ->whereIn('id_alumno',$alumnos)
+                ->paginate(10);
+
+                
+                return view('Busquedas/busquedaAlumnoSemestre')->with('alumnos',$consulta3)->with('id_semestre',$id_semestre);
+            }else{
+                return redirect('Admin/Semestre');
+            }
+            
+
+        }else{
+            return redirect('/login');
+        }
+    }
+
     public function store(Request $request){
         if(Auth::check()){
             $fechaI = $request->input('fechaI');
@@ -139,6 +174,19 @@ public function storeAlumno(Request $request){
             ->where('actual','=',true)
             ->update(['actual'=>false]);
             return redirect('Admin/Semestre');
+
+        }else{
+            return redirect('/login');
+        }
+    }
+
+    public function eliminarA($id_semestre,$id_alumno){
+        if(Auth::check()){
+            $consulta = DB::table('alumnossemestre')
+            ->where('id_semestre','=',$id_semestre)
+            ->where('id_alumno','=',$id_alumno)
+            ->delete();
+            return redirect('Admin/Semestre/Baja/Alumno');
 
         }else{
             return redirect('/login');
