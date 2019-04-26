@@ -1,10 +1,11 @@
 @include('Menus.menuAdmin')
 <link rel="stylesheet" href="{{ asset('css/usuarios.css')}}">
 <div class="contenido">
+<title>Semestre</title>
 <fieldset>
     <legend>Administrar Semestre</legend>
     <p>Nuevo Semestre</p>
-    <a href="">Alta</a>
+    <a href="{{ url('Admin/Semestre/Alta')}}">Alta</a>
     <br>
     <hr>
     <p>Semestre Actual</p>
@@ -14,7 +15,7 @@
     <br>
     <hr>
     <p>Finalizar Semestre</p>
-    <a href="">Finalizar</a>
+    <a href="{{ url('Admin/Semestre/Baja')}}">Finalizar</a>
     <br>
     <hr>
     <p>Historial Semestres</p>

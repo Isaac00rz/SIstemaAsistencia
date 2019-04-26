@@ -43,3 +43,7 @@ Route::get('/Admin/Usuario/Padre/Editar/{id_usuario}','usuariosController@editar
 Route::post('/Modificar/Usuario/editarUsuarioA','usuariosController@editarUsuarioA');
 Route::post('/Modificar/Usuario/editarUsuarioP','usuariosController@editarUsuarioP');
 Route::get('/Admin/Usuario/Administracion/Eliminar/{id_alumno}','usuariosController@eliminarA');
+
+Route::get('/Admin/Semestre/Alta','SemestreController@formulario');
+Route::post('/Altas/Semestre/altaSemestre','SemestreController@store');
+Route::get('/Admin/Semestre/Baja','SemestreController@finalizar');
