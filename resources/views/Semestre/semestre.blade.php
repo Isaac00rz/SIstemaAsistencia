@@ -10,7 +10,7 @@
     <hr>
     <p>Semestre Actual</p>
     <a href="">Baja Alumnos</a>
-    <a href="">Agregar Alumnos</a>
+    <a href="{{url('Admin/Semestre/Alta/Alumno')}}">Agregar Alumnos</a>
     <a href="">Información</a>
     <br>
     <hr>

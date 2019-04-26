@@ -35,6 +35,41 @@ class SemestreController extends Controller
         }
     }
 
+    public function formularioA(){
+        if(Auth::check()){
+            $consulta = DB::table('semestre')
+                ->select('id_semestre')
+                ->where('actual','=',true)
+                ->get();
+            if((count($consulta)>0)){
+                $alumnos[] = 0;
+                foreach($consulta as $semestre){
+                    $id_semestre = $semestre->id_semestre;
+                }
+                $consulta2 = DB::table('alumnossemestre')
+                ->select('id_alumno')
+                ->where('id_semestre','=',$id_semestre)
+                ->get();
+                foreach($consulta2 as $alumno){
+                    $alumnos[] = $alumno->id_alumno;
+                }
+                $consulta3 = DB::table('alumnos')
+                ->select(DB::raw("id_alumno, CONCAT(id_alumno,'-',nombre,' ',apellidoP,' ',apellidoM) as nombreC")) 
+                ->whereNotIn('id_alumno',$alumnos)
+                ->get();
+
+                
+                return view('Altas/altaAlumnoSemestre')->with('alumnos',$consulta3)->with('id_semestre',$id_semestre);
+            }else{
+                return redirect('Admin/Semestre');
+            }
+            
+
+        }else{
+            return redirect('/login');
+        }
+    }
+
     public function store(Request $request){
         if(Auth::check()){
             $fechaI = $request->input('fechaI');
@@ -66,6 +101,36 @@ class SemestreController extends Controller
         }else{
             return redirect('/login');
     }
+}
+
+public function storeAlumno(Request $request){
+    if(Auth::check()){
+        $array_alumnos = $request->input('alumnos');
+        $idS = $request->input('id_semestre');
+        $id = Auth::id();
+        $contador = 0;
+        $registros = count($array_alumnos);
+
+        $consulta2 = DB::table('alumnos')
+        ->select('id_alumno','semestre')
+        ->whereIn('id_alumno',$array_alumnos)->get();
+
+        foreach($consulta2 as $i=>$t) {
+            $consulta = DB::table('alumnossemestre')
+            ->insert(['id_alumno'=>$array_alumnos[$i],'id_semestre'=> $idS,
+            'nosemestre'=>($t->semestre + 1)]);
+            $contador++;
+        }
+        if($registros==$contador){
+            return redirect('Admin/Semestre')->with('message', 'Datos Insertados'); ;
+        }
+
+        
+
+    }else{
+        return redirect('/login');
+    }
+
 }
 
     public function finalizar(){

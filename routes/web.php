@@ -47,3 +47,5 @@ Route::get('/Admin/Usuario/Administracion/Eliminar/{id_alumno}','usuariosControl
 Route::get('/Admin/Semestre/Alta','SemestreController@formulario');
 Route::post('/Altas/Semestre/altaSemestre','SemestreController@store');
 Route::get('/Admin/Semestre/Baja','SemestreController@finalizar');
+Route::get('/Admin/Semestre/Alta/Alumno','SemestreController@formularioA');
+Route::post('/Altas/Semestre/Alumno/altaAlumno','SemestreController@storeAlumno');
